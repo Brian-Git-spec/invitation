@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: Add a smooth font transition */
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@media print {
+  /* Hide everything except the invitation card */
+  body * {
+    visibility: hidden;
+  }
+  .max-w-md, .max-w-md * {
+    visibility: visible;
+  }
+  .max-w-md {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  /* Hide the print button itself on the paper */
+  button {
+    display: none !important;
+  }
+}
