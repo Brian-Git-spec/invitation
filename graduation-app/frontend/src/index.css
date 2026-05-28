@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #121212;
+  --color-gold: #d4af37;
+}
 
 /* Optional: Add a smooth font transition */
 body {
@@ -8,6 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 @media print {
   /* Hide everything except the invitation card */
   body * {

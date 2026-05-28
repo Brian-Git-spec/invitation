@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { sendInvitation } from './services/api';
 import { GraduationCap, MapPin, Calendar, Clock, Send, CheckCircle } from 'lucide-react';
 
@@ -16,8 +16,9 @@ const App: React.FC = () => {
     
     setLoading(true);
     try {
+      // Send an empty string if 'Other' is picked so the backend strips it out
       const displayRelation = relation === "Other" ? "" : relation;
-      const data = await sendInvitation(name, relation);
+      const data = await sendInvitation(name, displayRelation);
       setInvitation(data.message);
     } catch (error) {
       console.error("Error sending invitation", error);
@@ -43,16 +44,15 @@ const App: React.FC = () => {
           <div className="flex flex-col items-center text-center">
             <MapPin className="text-gold mb-2" />
             <h3 className="font-bold">Venue</h3>
-
             <a 
-      href="https://www.google.com/maps/search/?api=1&query=The+A.S.K.+Dome+Jamhuri+Grounds+Nairobi" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="text-gray-200 hover:text-gold transition-colors underline decoration-gold/30 underline-offset-4"
-    >
-      The A.S.K. Dome, Jamhuri Grounds
-    </a>
-        <h4 className="text-xs font-medium mt-1 text-gray-500 ">Click above to view on Google Maps</h4>
+              href="https://www.google.com/maps/search/?api=1&query=The+A.S.K.+Dome+Jamhuri+Grounds+Nairobi" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-200 hover:text-gold transition-colors underline decoration-gold/30 underline-offset-4"
+            >
+              The A.S.K. Dome, Jamhuri Grounds
+            </a>
+            <h4 className="text-xs font-medium mt-1 text-gray-500 ">Click above to view on Google Maps</h4>
           </div>
           <div className="flex flex-col items-center border-x border-gold/10">
             <Calendar className="text-gold mb-2" />
