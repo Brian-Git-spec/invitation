@@ -42,7 +42,7 @@ def save_invitation():
     db.session.commit()
 
     # Generate Message
-    invitation_msg = f"Dear {prefix} {name}, you are warmly invited to my graduation ceremony at The A.S.K. Dome, Jamhuri Grounds on 29th July 2026 starting at 8:30 a.m. to 1:00 p.m."
+    invitation_msg = f"Dear {prefix}, {name}, you are warmly invited to celebrate a major milestone with me at my graduation ceremony. The event will take place at The A.S.K. Dome, Jamhuri Grounds, on Wednesday, 29th July 2026, from 8:30 a.m. to 1:00 p.m. Your presence and support would mean the world to me."
     
     return jsonify({
         "message": invitation_msg,

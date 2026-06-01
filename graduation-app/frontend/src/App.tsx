@@ -28,7 +28,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dark text-white font-sans selection:bg-gold/30">
+     <div className="min-h-screen bg-dark text-white font-sans selection:bg-gold/30">
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto px-6 py-12 text-center">
         <div className="flex justify-center mb-6 animate-bounce">
@@ -99,7 +99,7 @@ const App: React.FC = () => {
                 disabled={loading}
                 className="w-full bg-dark text-gold font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-black transition-all active:scale-95"
               >
-                {loading ? "Generating..." : <><Send size={18}/> Send Invitation</>}
+                {loading ? "Generating..." : <><Send size={18}/> Generate Invitation</>}
               </button>
             </form>
           </div>
@@ -107,7 +107,7 @@ const App: React.FC = () => {
           <div className="max-w-md mx-auto bg-gradient-to-br from-gold to-yellow-600 p-1 rounded-3xl shadow-2xl animate-in fade-in zoom-in duration-500">
             <div className="bg-white text-dark p-8 rounded-[1.4rem]">
               <CheckCircle size={50} className="text-green-500 mx-auto mb-4" />
-              <h2 className="text-3xl font-serif font-bold mb-4">Official Invitation from Brian Wairagi Warui</h2>
+              <h2 className="text-lg font-serif font-bold mb-4">Official Invitation from Brian.W.Warui</h2>
               <p className="text-lg leading-relaxed mb-6 italic">"{invitation}"</p>
               <div className="border-t pt-4">
                 <p className="text-sm font-bold uppercase tracking-widest text-gray-500">Presented to: {name}</p>
