@@ -84,7 +84,7 @@ const App: React.FC = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-semibold mb-1">Your Name</label>
+                <label className="block text-sm font-semibold mb-1">Your Full Name</label>
                 <input 
                   type="text"
                   placeholder="e.g. John Doe"
