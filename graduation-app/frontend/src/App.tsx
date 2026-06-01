@@ -10,22 +10,66 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [invitation, setInvitation] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!name || !relation) return alert("Please fill in all fields");
-    
-    setLoading(true);
-    try {
-      // Send an empty string if 'Other' is picked so the backend strips it out
-      const displayRelation = relation === "Other" ? "" : relation;
-      const data = await sendInvitation(name, displayRelation);
-      setInvitation(data.message);
-    } catch (error) {
-      console.error("Error sending invitation", error);
-    } finally {
-      setLoading(false);
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!name || !relation) {
+    alert("Please fill in all fields");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const displayRelation = relation === "Other" ? "" : relation;
+
+    console.log("Submitting:", {
+      name,
+      relation: displayRelation,
+    });
+
+    const data = await sendInvitation(name, displayRelation);
+
+    console.log("API Response:", data);
+
+    if (!data) {
+      throw new Error("No data returned from API");
     }
-  };
+
+    if (!data.message) {
+      console.warn("No 'message' field found in response:", data);
+      alert("Backend response does not contain a message field.");
+      return;
+    }
+
+    setInvitation(data.message);
+
+    console.log("Invitation generated successfully");
+  } catch (error: any) {
+    console.error("Invitation generation failed:", error);
+
+    if (error.response) {
+      console.error("Status:", error.response.status);
+      console.error("Response Data:", error.response.data);
+
+      alert(
+        `Server Error ${error.response.status}: ${JSON.stringify(error.response.data)}`
+      );
+    } else if (error.request) {
+      console.error("No response received:", error.request);
+
+      alert(
+        "Unable to reach the backend server. Check your Railway backend URL and CORS settings."
+      );
+    } else {
+      console.error("Error:", error.message);
+
+      alert(`Error: ${error.message}`);
+    }
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
      <div className="min-h-screen bg-dark text-white font-sans selection:bg-gold/30">
